@@ -6,19 +6,32 @@ $(document).ready( function(){
   displayShuffle();
   $("img").hide();
 
-  cardSelection(match, selection);
+  $(".card").on("click", function(){
 
-  function cardSelection(match, selection){
-    $(".card").on("click", function(){
-      if (selection.length === 2) {
-        $(".card").off("click");
-        cardComparison(match, selection)
+    if (selection.length === 2){
+      selection = [];
+    }
+
+    $(this).children().show();
+    id = $(this).attr("id");
+    selection.push(id);
+    checkSelection(match, selection);
+
+  });
+
+  function checkSelection(match, selection){
+    if (selection.length === 2){
+      console.log(selection);
+      if (selection[0] === selection[1]){
+        $("#" + selection[0]).children().hide()
+        $("#" + selection[1]).children().hide()
+        return;
       } else {
-        $(this).children().show();
-        id = $(this).attr("id");
-        selection.push(id);
+        cardComparison(match, selection);
       }
-    });
+    }else{
+      return;
+    }
   }
 
   function cardComparison(match, selection){
@@ -37,15 +50,17 @@ $(document).ready( function(){
       if (match.length === 16){
         $("h1").text("You win!");
       } else {
-        selection = [];
-        cardSelection(match, selection);
+        return;
       }
     }
     else {
-      $(cardADiv).delay("slow").hide();
-      $(cardBDiv).delay("slow").hide();
-      selection = [];
-      cardSelection(match, selection);
+      setTimeout(function() {
+        $(cardADiv).hide();
+      }, 500);
+      setTimeout(function() {
+        $(cardBDiv).hide();
+      }, 500);
+      return;
     }
   }
 
