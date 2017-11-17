@@ -1,7 +1,7 @@
 $(document).ready( function(){
 
   var match = [];
-  var selection = []
+  var selection = [];
 
   displayShuffle();
   $("img").hide();
@@ -19,9 +19,23 @@ $(document).ready( function(){
 
   });
 
+  $("#reset").on("click", function(){
+    reset();
+  });
+
+  function reset(){
+    match = [];
+    selection = [];
+
+    displayShuffle();
+    $("img").hide();
+    $("h1").text("The Memory Match Game");
+    $("button").addClass("hide");
+
+  }
+
   function checkSelection(match, selection){
     if (selection.length === 2){
-      console.log(selection);
       if (selection[0] === selection[1]){
         $("#" + selection[0]).children().hide()
         $("#" + selection[1]).children().hide()
@@ -49,6 +63,7 @@ $(document).ready( function(){
       match.push(cardBImg);
       if (match.length === 16){
         $("h1").text("You win!");
+        $("button").removeClass("hide");
       } else {
         return;
       }
@@ -64,7 +79,7 @@ $(document).ready( function(){
     }
   }
 
-  // Fisher-Yates (aka Knuth) Shuffle
+  // Fisher-Yates Shuffle Algorithm
 
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;

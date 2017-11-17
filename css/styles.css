@@ -1,23 +1,36 @@
 body {
   color: #C8E9A0;
   text-shadow: 1px 1px 1px #A13D63;
-  font-family: helvetica;
+  font-family: Courier;
   background-color: #6DD3CE;
 }
 
 header {
   margin: 0 auto;
   text-align: center;
-  font-size: 1em;
-  padding: 0;
+  text-transform: uppercase;
+  padding: 1%;
+}
+
+h1 {
+  display: inline;
+  font-size: 2em;
 }
 
 button {
+  display: inline;
+  font-family: Courier;
+  text-transform: uppercase;
+  font-size: 1em;
   font-weight: bold;
-  color: #351E29;
-  border: 1px dashed #A13D63;
+  color: #A13D63;
   background-color: #C8E9A0;
+  margin-left: 3%;
   padding: 1%;
+}
+
+button:hover{
+  box-shadow: 1px 1px 5px #A13D63;
 }
 
 .grid-container {
@@ -33,4 +46,8 @@ button {
 .card {
   border: 1px dashed #A13D63;
   background-image: url("../images/background.png");
+}
+
+.hide {
+  visibility: hidden;
 }
